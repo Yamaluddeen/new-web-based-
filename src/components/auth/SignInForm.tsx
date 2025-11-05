@@ -67,51 +67,54 @@ export const SignInForm = ({
       id="section-login"
       className="relative w-screen h-screen flex items-center justify-center m-0 p-0"
     >
-      {/* Background Image */}
+      {/* 🔹 Background Image */}
       {bgImageSrc && (
         <img
           src={bgImageSrc}
           alt="Background"
-          className="absolute inset-0 w-full h-full object-cover object-center m-0 p-0"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
       )}
 
-      {/* Overlay สีดำโปร่ง */}
-      <div className="absolute inset-0 bg-black/50 m-0 p-0" />
+      {/* 🔹 Overlay สีดำโปร่ง 50% */}
+      <div className="absolute inset-0 bg-black/50" />
 
-      {/* Centered Login Form */}
-      <div className="relative z-10 flex items-center justify-center w-full h-full m-0 p-0">
-        {/* กล่องฟอร์มขนาดปกติ max-width 552px */}
-        <div className="bg-white rounded-[18px] p-8 flex flex-col items-center gap-8 w-full max-w-[552px] shadow-lg">
+      {/* 🔹 Centered Login Form */}
+      <div className="relative z-10 flex items-center justify-center w-full h-full px-4">
+        <div className="bg-white rounded-[16px] p-6 sm:p-8 flex flex-col items-center gap-6 w-full max-w-[400px] sm:max-w-[480px] shadow-lg">
           {/* Logo */}
           {logoSrc ? (
-            <img src={logoSrc} alt="Logo" className="w-[188px] h-auto" />
+            <img
+              src={logoSrc}
+              alt="Logo"
+              className="w-[120px] h-auto sm:w-[150px]"
+            />
           ) : (
-            <span className="text-xl font-bold text-gray-600">LOGO</span>
+            <span className="text-lg font-bold text-gray-600">LOGO</span>
           )}
 
           {/* Form */}
           <form
-            className="w-full flex flex-col gap-8"
+            className="w-full flex flex-col gap-6"
             onSubmit={handleSubmit(onSubmit)}
           >
             {/* Header */}
-            <div className="flex flex-col gap-2 text-left">
-              <h1 className="text-[32px] font-bold text-[#060606] leading-[39px]">
+            <div className="text-left w-full mb-2">
+              <h1 className="text-2xl sm:text-3xl font-bold text-[#060606]">
                 เข้าสู่ระบบ
               </h1>
-              <p className="text-lg text-[#7f7f7f]">
-                กรุณากรอกอีเมลและรหัสผ่านของคุณ
+              <p className="text-sm sm:text-base text-[#7f7f7f] mt-1">
+                กรอกอีเมลและรหัสผ่านของคุณ
               </p>
             </div>
 
             {/* Inputs */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
               {/* Email */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-1.5">
                 <label
                   htmlFor="email"
-                  className="text-base font-normal text-[#060606]"
+                  className="text-sm sm:text-base text-[#060606]"
                 >
                   อีเมล
                 </label>
@@ -119,7 +122,7 @@ export const SignInForm = ({
                   type="email"
                   id="email"
                   placeholder="กรุณากรอกอีเมล"
-                  className={`w-full border rounded-lg px-4 py-3 text-sm placeholder:text-[#c7c7c7] focus:outline-none focus:ring-2 focus:ring-[#42a7c3]/50 ${
+                  className={`w-full border rounded-md px-3 py-2 text-sm placeholder:text-[#c7c7c7] focus:outline-none focus:ring-2 focus:ring-[#42a7c3]/50 ${
                     errors.email ? "border-red-500" : "border-[#c7c7c7]"
                   }`}
                   {...register("email", {
@@ -131,17 +134,17 @@ export const SignInForm = ({
                   })}
                 />
                 {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">
+                  <p className="text-red-500 text-xs mt-0.5">
                     {errors.email.message}
                   </p>
                 )}
               </div>
 
               {/* Password */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-1.5">
                 <label
                   htmlFor="password"
-                  className="text-base font-normal text-[#060606]"
+                  className="text-sm sm:text-base text-[#060606]"
                 >
                   รหัสผ่าน
                 </label>
@@ -150,7 +153,7 @@ export const SignInForm = ({
                     type={showPassword ? "text" : "password"}
                     id="password"
                     placeholder="กรุณากรอกรหัสผ่าน"
-                    className={`w-full border rounded-lg px-4 py-3 pr-12 text-sm placeholder:text-[#c7c7c7] focus:outline-none focus:ring-2 focus:ring-[#42a7c3]/50 ${
+                    className={`w-full border rounded-md px-3 py-2 pr-10 text-sm placeholder:text-[#c7c7c7] focus:outline-none focus:ring-2 focus:ring-[#42a7c3]/50 ${
                       errors.password ? "border-red-500" : "border-[#c7c7c7]"
                     }`}
                     {...register("password", {
@@ -160,7 +163,7 @@ export const SignInForm = ({
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-400"
+                    className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-400"
                   >
                     <img
                       src={
@@ -168,18 +171,18 @@ export const SignInForm = ({
                         "https://cdn-icons-png.flaticon.com/512/709/709612.png"
                       }
                       alt="toggle password visibility"
-                      className="w-6 h-6"
+                      className="w-5 h-5"
                     />
                   </button>
                 </div>
                 <a
                   href="/forgot-password"
-                  className="text-right text-xs text-[#42a7c3] opacity-60 hover:opacity-100 transition-opacity"
+                  className="text-right text-xs text-[#42a7c3] opacity-60 hover:opacity-100 transition-opacity mt-1"
                 >
                   ลืมรหัสผ่าน
                 </a>
                 {errors.password && (
-                  <p className="text-red-500 text-sm mt-1">
+                  <p className="text-red-500 text-xs mt-0.5">
                     {errors.password.message}
                   </p>
                 )}
@@ -187,16 +190,16 @@ export const SignInForm = ({
             </div>
 
             {/* Actions */}
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-3">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#a1d3e1] text-white text-base rounded-lg py-3 hover:bg-[#8bc9d9] transition-colors"
+                className="w-full bg-[#a1d3e1] text-white text-sm sm:text-base rounded-md py-2.5 hover:bg-[#8bc9d9] transition-colors"
               >
                 {isSubmitting ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบ"}
               </button>
 
-              <p className="text-base text-center">
+              <p className="text-sm sm:text-base text-center">
                 <span className="text-[#19191b]">ยังไม่มีบัญชีใช่ไหม? </span>
                 <a href="/sign-up" className="text-[#42a7c3] hover:underline">
                   สร้างบัญชีใหม่
